@@ -27,6 +27,7 @@ public:
     ~MainWindow() override;
 
 private:
+
     Ui::MainWindow *ui;
 };
 
