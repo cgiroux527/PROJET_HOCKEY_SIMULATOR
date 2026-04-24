@@ -14,13 +14,13 @@ find_package(Qt6 COMPONENTS
         REQUIRED)
 
 add_executable(PROJET_HOCKEY_SIMULATOR main.cpp
-        app.cpp
-        app.h
-        app.ui
         Personne.cpp
         Personne.h
         Joueur.cpp
-        Joueur.h)
+        Joueur.h
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui)
 target_link_libraries(PROJET_HOCKEY_SIMULATOR
         Qt::Core
         Qt::Gui
