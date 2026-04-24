@@ -21,14 +21,14 @@ add_executable(PROJET_HOCKEY_SIMULATOR main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        Entraineur.cpp
-        Entraineur.h
         Parser.h
         Parser.cpp
         fonctions.h
         fonctions.cpp
         CSVParser.h
-        CSVParser.cpp)
+        CSVParser.cpp
+        Entraineur.cpp
+        Entraineur.h)
 target_link_libraries(PROJET_HOCKEY_SIMULATOR
         Qt::Core
         Qt::Gui
