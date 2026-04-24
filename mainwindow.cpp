@@ -20,5 +20,5 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::boutonClique() {
-    std::cout << "ok";
+    std::cout << "ok" << std::endl;
 }
