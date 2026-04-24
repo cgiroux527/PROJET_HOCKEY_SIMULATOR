@@ -1,0 +1,13 @@
+//
+// Created by Utilisateur on 2026-04-24.
+//
+
+#ifndef PROJET_HOCKEY_SIMULATOR_ENTRAINEUR_H
+#define PROJET_HOCKEY_SIMULATOR_ENTRAINEUR_H
+
+
+class Entraineur {
+};
+
+
+#endif //PROJET_HOCKEY_SIMULATOR_ENTRAINEUR_H

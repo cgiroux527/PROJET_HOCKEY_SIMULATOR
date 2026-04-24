@@ -3,3 +3,7 @@
 //
 
 #include "Personne.h"
+
+Personne::Personne(std::string nom) {
+    _nom = nom;
+}
