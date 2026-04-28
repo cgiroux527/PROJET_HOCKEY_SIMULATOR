@@ -28,7 +28,10 @@ add_executable(PROJET_HOCKEY_SIMULATOR main.cpp
         CSVParser.h
         CSVParser.cpp
         Entraineur.cpp
-        Entraineur.h)
+        Entraineur.h
+        Equipe.cpp
+        Equipe.h
+)
 target_link_libraries(PROJET_HOCKEY_SIMULATOR
         Qt::Core
         Qt::Gui

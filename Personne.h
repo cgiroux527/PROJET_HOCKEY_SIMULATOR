@@ -11,13 +11,14 @@
 class Personne {
 private:
     std::string _nom;
-    CSVParser _parser;
 
 public:
     Personne(std::string nom);
 
+    Personne();
 
-
+    std::string getNom();
+    void setNom(std::string nom);
     virtual void afficher() = 0;
 
 };

@@ -13,7 +13,10 @@ private:
     std::string _position;
 
 public:
-    Joueur(int numero,std::string position);
+    Joueur(int numero,std::string position, std::string nom);
+
+    void setNumero(int numero);
+    void setPosition(std::string& position);
 
     void afficher() override;
 };

@@ -10,10 +10,12 @@
 #include "Personne.h"
 
 class Entraineur : public Personne {
-public :
+private :
     std::string _poste;
-private:
-    Entraineur(std::string poste);
+public :
+    Entraineur(std::string poste, std::string nom);
+
+    void setPoste(std::string& poste);
 
     void afficher() override;
 
