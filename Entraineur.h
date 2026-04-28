@@ -5,8 +5,18 @@
 #ifndef PROJET_HOCKEY_SIMULATOR_ENTRAINEUR_H
 #define PROJET_HOCKEY_SIMULATOR_ENTRAINEUR_H
 
+#include <string>
 
-class Entraineur {
+#include "Personne.h"
+
+class Entraineur : public Personne {
+public :
+    std::string _poste;
+private:
+    Entraineur(std::string poste);
+
+    void afficher() override;
+
 };
 
 

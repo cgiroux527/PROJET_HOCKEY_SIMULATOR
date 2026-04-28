@@ -16,7 +16,9 @@ private:
 public:
     Personne(std::string nom);
 
-    virtual void afficher();
+
+
+    virtual void afficher() = 0;
 
 };
 
