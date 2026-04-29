@@ -16,7 +16,9 @@ private:
     std::list<Joueur> _joueurs;
     std::vector<Entraineur> _entraineurs;
 
-    std::vector<std::vector<Joueur>> _alignement;
+    std::vector<std::vector<Joueur>> _alignementAttaque;
+    std::vector<std::vector<Joueur>> _alignementDefense;
+    std::vector<Joueur> _gardiens;
 
     CSVParser _parser;
 
@@ -26,8 +28,7 @@ public:
     std::list<Joueur> getJoueurs();
     std::vector<Entraineur> getEntraineur();
 
-    void ajouterAlignementAttaque();
-    void ajouterAlignementDefense();
+    void ajouterAlignement();
     void ajouterGardien();
 
     void charger(const std::string& nomFichier);

@@ -60,30 +60,26 @@ void Equipe::sauvegarder(const std::string &nomFichier) {
     fichier.close();
 }
 
-void Equipe::ajouterAlignementAttaque() {
+void Equipe::ajouterAlignement() {
     std::vector<Joueur> ligne;
     for (auto it = _joueurs.begin(); it != _joueurs.end(); it++) {
         if (it->getPosition() != "D" || it->getPosition() != "G") {
             ligne.push_back(*it);
-        }
-
-        if (ligne.size() != TAILLE_LIGNE_ATTAQUE) {
-            _alignement.push_back(ligne);
+            if (ligne.size() == TAILLE_LIGNE_ATTAQUE) {
+                _alignementAttaque.push_back(ligne);
+                ligne.clear();
+            }
+        } else if (it->getPosition() == "D") {
+            ligne.push_back(*it);
+            if (ligne.size() == TAILLE_LIGNE_DEFENSE) {
+                _alignementDefense.push_back(ligne);
+                ligne.clear();
+            }
+        } else {
+            _gardiens.push_back(*it);
         }
     }
 }
 
-void Equipe::ajouterAlignementDefense() {
-    std::vector<Joueur> ligne;
-    for (auto it = _joueurs.begin(); it != _joueurs.end(); it++) {
-        if (it->getPosition() == "D") {
-
-        }
-    }
-}
-
-void Equipe::ajouterGardien() {
-
-}
 
 
