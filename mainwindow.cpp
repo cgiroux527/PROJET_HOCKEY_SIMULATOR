@@ -16,6 +16,8 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     ui->TableauJoueurs->setRowCount(0);
+    ui->TableauJoueurs->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->TableauEntraineurs->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     Equipe equipeCharge;
     equipeCharge.charger("../equipe1.csv");
@@ -26,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->TableauJoueurs->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(it->getNom())));
         ui->TableauJoueurs->setItem(row, 1, new QTableWidgetItem(it->getNumero()));
         ui->TableauJoueurs->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(it->getPosition())));
+        row++;
     }
 }
 
