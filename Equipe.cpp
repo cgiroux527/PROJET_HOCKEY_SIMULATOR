@@ -11,7 +11,7 @@ Equipe::Equipe() {
 }
 
 
-void Equipe::charger(std::string &nomFichier) {
+void Equipe::charger(const std::string &nomFichier) {
     std::ifstream fichier;
     fichier.open(nomFichier);
     if (!fichier.is_open()) {
@@ -25,11 +25,19 @@ void Equipe::charger(std::string &nomFichier) {
 
     for (size_t i = 0; i < _parser.getNumRows(); i++) {
         if (_parser.getInt(i,1) != 0) {
-            _joueurs.emplace_back(_parser.getInt(i,1),_parser.getString(i,2),_parser.getString(i,3));
+            _joueurs.emplace_back(_parser.getInt(i,1),_parser.getString(i,2),_parser.getString(i,0));
         } else {
             _entraineurs.emplace_back(_parser.getString(i,2),_parser.getString(i,0));
         }
     }
 
     fichier.close();
+}
+
+std::vector<Entraineur> Equipe::getEntraineur() {
+    return _entraineurs;
+}
+
+std::list<Joueur> Equipe::getJoueurs() {
+    return _joueurs;
 }

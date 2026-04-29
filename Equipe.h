@@ -20,7 +20,9 @@ private:
 
 public:
     Equipe();
-    void charger(std::string& nomFichier);
+    std::list<Joueur> getJoueurs();
+    std::vector<Entraineur> getEntraineur();
+    void charger(const std::string& nomFichier);
 
 };
 
