@@ -26,6 +26,10 @@ public:
     std::list<Joueur> getJoueurs();
     std::vector<Entraineur> getEntraineur();
 
+    void ajouterAlignementAttaque();
+    void ajouterAlignementDefense();
+    void ajouterGardien();
+
     void charger(const std::string& nomFichier);
     void sauvegarder(const std::string& nomFichier);
 };

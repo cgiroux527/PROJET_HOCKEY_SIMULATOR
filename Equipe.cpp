@@ -6,10 +6,12 @@
 
 #include <fstream>
 
+const int TAILLE_LIGNE_ATTAQUE = 3;
+const int TAILLE_LIGNE_DEFENSE = 2;
+
 Equipe::Equipe() {
     _parser = CSVParser(';',false);
 }
-
 
 void Equipe::charger(const std::string &nomFichier) {
     std::ifstream fichier;
@@ -52,9 +54,36 @@ void Equipe::sauvegarder(const std::string &nomFichier) {
     for (auto it = _joueurs.begin(); it != _joueurs.end(); it++) {
         fichier << it->getNom() << ";" << it->getNumero() << ";" << it->getPosition() << '\n';
     }
-    for (auto it = _entraineurs.begin(); it != _entraineurs.end(); it++) {
-        fichier << it->getNom() << ";0;" << it->getPoste() << '\n';
+    for (size_t i = 0; i < _entraineurs.size(); i++) {
+        fichier << _entraineurs[i].getNom() << ";0;" << _entraineurs[i].getPoste() << '\n';
     }
     fichier.close();
 }
+
+void Equipe::ajouterAlignementAttaque() {
+    std::vector<Joueur> ligne;
+    for (auto it = _joueurs.begin(); it != _joueurs.end(); it++) {
+        if (it->getPosition() != "D" || it->getPosition() != "G") {
+            ligne.push_back(*it);
+        }
+
+        if (ligne.size() != TAILLE_LIGNE_ATTAQUE) {
+            _alignement.push_back(ligne);
+        }
+    }
+}
+
+void Equipe::ajouterAlignementDefense() {
+    std::vector<Joueur> ligne;
+    for (auto it = _joueurs.begin(); it != _joueurs.end(); it++) {
+        if (it->getPosition() == "D") {
+
+        }
+    }
+}
+
+void Equipe::ajouterGardien() {
+
+}
+
 

@@ -10,9 +10,5 @@ int main(int argc, char *argv[]) {
     MainWindow window;
     window.show();
 
-    Equipe test;
-    test.charger("../equipe1.csv");
-    test.sauvegarder("../equipe2.csv");
-
     return QApplication::exec();
 }
