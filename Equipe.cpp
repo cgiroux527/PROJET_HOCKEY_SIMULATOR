@@ -55,5 +55,6 @@ void Equipe::sauvegarder(const std::string &nomFichier) {
     for (auto it = _entraineurs.begin(); it != _entraineurs.end(); it++) {
         fichier << it->getNom() << ";0;" << it->getPoste() << '\n';
     }
+    fichier.close();
 }
 

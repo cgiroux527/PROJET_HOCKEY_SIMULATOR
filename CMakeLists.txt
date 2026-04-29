@@ -31,6 +31,10 @@ add_executable(PROJET_HOCKEY_SIMULATOR main.cpp
         Entraineur.h
         Equipe.cpp
         Equipe.h
+        Simulation.cpp
+        Simulation.h
+        Match.cpp
+        Match.h
 )
 target_link_libraries(PROJET_HOCKEY_SIMULATOR
         Qt::Core

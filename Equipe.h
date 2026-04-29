@@ -16,6 +16,8 @@ private:
     std::list<Joueur> _joueurs;
     std::vector<Entraineur> _entraineurs;
 
+    std::vector<std::vector<Joueur>> _alignement;
+
     CSVParser _parser;
 
 public:
