@@ -13,7 +13,10 @@ void Entraineur::setPoste(std::string &poste) {
     _poste = poste;
 }
 
-
 void Entraineur::afficher() {
 
+}
+
+const std::string &Entraineur::getPoste() {
+    return _poste;
 }

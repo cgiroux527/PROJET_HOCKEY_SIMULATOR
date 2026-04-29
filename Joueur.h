@@ -7,7 +7,7 @@
 
 #include "Personne.h"
 
-class Joueur : Personne{
+class Joueur : public Personne {
 private:
     int _numero;
     std::string _position;
@@ -17,6 +17,9 @@ public:
 
     void setNumero(int numero);
     void setPosition(std::string& position);
+
+    int getNumero();
+    const std::string getPosition();
 
     void afficher() override;
 };

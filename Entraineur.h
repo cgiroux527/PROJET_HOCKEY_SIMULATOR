@@ -17,6 +17,8 @@ public :
 
     void setPoste(std::string& poste);
 
+    const std::string& getPoste();
+
     void afficher() override;
 
 };

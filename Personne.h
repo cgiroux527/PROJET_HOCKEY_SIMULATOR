@@ -9,7 +9,7 @@
 #include "CSVParser.h"
 
 class Personne {
-private:
+protected:
     std::string _nom;
 
 public:

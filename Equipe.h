@@ -20,10 +20,12 @@ private:
 
 public:
     Equipe();
+
     std::list<Joueur> getJoueurs();
     std::vector<Entraineur> getEntraineur();
-    void charger(const std::string& nomFichier);
 
+    void charger(const std::string& nomFichier);
+    void sauvegarder(const std::string& nomFichier);
 };
 
 

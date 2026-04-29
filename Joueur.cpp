@@ -22,3 +22,11 @@ void Joueur::setPosition(std::string &position) {
     _position = position;
 }
 
+int Joueur::getNumero() {
+    return _numero;
+}
+
+const std::string Joueur::getPosition() {
+    return _position;
+}
+

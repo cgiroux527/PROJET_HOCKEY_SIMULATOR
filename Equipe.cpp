@@ -41,3 +41,19 @@ std::vector<Entraineur> Equipe::getEntraineur() {
 std::list<Joueur> Equipe::getJoueurs() {
     return _joueurs;
 }
+
+void Equipe::sauvegarder(const std::string &nomFichier) {
+    std::ofstream fichier;
+    fichier.open(nomFichier);
+    if (!fichier.is_open()) {
+        std::cerr << "L'ouverture du fichier a échoué." << std::endl;
+        return;
+    }
+    for (auto it = _joueurs.begin(); it != _joueurs.end(); it++) {
+        fichier << it->getNom() << ";" << it->getNumero() << ";" << it->getPosition() << '\n';
+    }
+    for (auto it = _entraineurs.begin(); it != _entraineurs.end(); it++) {
+        fichier << it->getNom() << ";0;" << it->getPoste() << '\n';
+    }
+}
+
