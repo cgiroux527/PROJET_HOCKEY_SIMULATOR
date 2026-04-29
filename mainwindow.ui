@@ -40,10 +40,145 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>301</width>
+       <width>311</width>
        <height>551</height>
       </rect>
      </property>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
      <column>
       <property name="text">
        <string>Nom</string>
@@ -63,15 +198,40 @@
     <widget class="QTableWidget" name="TableauEntraineurs">
      <property name="geometry">
       <rect>
-       <x>600</x>
+       <x>510</x>
        <y>0</y>
-       <width>201</width>
-       <height>151</height>
+       <width>301</width>
+       <height>161</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Nouvelle ligne</string>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>Nom</string>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>Poste</string>

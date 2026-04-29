@@ -20,7 +20,9 @@ void Equipe::charger(const std::string &nomFichier) {
         std::cerr << "L'ouverture du fichier a échoué." << std::endl;
         return;
     }
+
     _parser.parse(fichier);
+
 
     _joueurs.clear();
     _entraineurs.clear();
