@@ -12,13 +12,10 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    connect(ui->Boutonok, &QPushButton::clicked, this, &MainWindow::boutonClique);
+
 }
 
 MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::boutonClique() {
-    std::cout << "ok" << std::endl;
-}
