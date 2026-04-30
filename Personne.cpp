@@ -17,11 +17,11 @@ void Personne::afficher() {
 
 }
 
-std::string Personne::getNom() {
+const std::string& Personne::getNom() {
     return _nom;
 }
 
-void Personne::setNom(std::string nom) {
+void Personne::setNom(const std::string& nom) {
     _nom = nom;
 }
 

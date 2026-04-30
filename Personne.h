@@ -17,8 +17,8 @@ public:
 
     Personne();
 
-    std::string getNom();
-    void setNom(std::string nom);
+    const std::string& getNom();
+    void setNom(const std::string& nom);
     virtual void afficher() = 0;
 
 };
