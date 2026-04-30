@@ -23,6 +23,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
 
     void afficherDonnees();
+    void passerPageSimulation();
 
     ~MainWindow() override;
 
