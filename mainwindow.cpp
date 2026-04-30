@@ -15,8 +15,9 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    afficherDonnees();
+    //afficherDonnees();
 
+    ui->TitreSim->setEnabled(false);
     connect(ui->BoutonPageSim, &QPushButton::clicked, this, [this]() {
     ui->MultiPageWidget->setCurrentIndex(0);
     });
