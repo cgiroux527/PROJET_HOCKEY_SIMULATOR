@@ -16,10 +16,10 @@ public:
     Joueur(int numero,std::string position, std::string nom);
 
     void setNumero(int numero);
-    void setPosition(std::string& position);
+    void setPosition(const std::string& position);
 
     int getNumero();
-    const std::string getPosition();
+    const std::string& getPosition();
 
     void afficher() override;
 };

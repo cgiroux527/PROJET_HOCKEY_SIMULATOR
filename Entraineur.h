@@ -15,7 +15,7 @@ private :
 public :
     Entraineur(std::string poste, std::string nom);
 
-    void setPoste(std::string& poste);
+    void setPoste(const std::string& poste);
 
     const std::string& getPoste();
 

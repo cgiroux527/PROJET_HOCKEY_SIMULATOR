@@ -18,7 +18,7 @@ void Joueur::setNumero(int numero) {
     _numero = numero;
 }
 
-void Joueur::setPosition(std::string &position) {
+void Joueur::setPosition(const std::string &position) {
     _position = position;
 }
 
@@ -26,7 +26,7 @@ int Joueur::getNumero() {
     return _numero;
 }
 
-const std::string Joueur::getPosition() {
+const std::string& Joueur::getPosition() {
     return _position;
 }
 

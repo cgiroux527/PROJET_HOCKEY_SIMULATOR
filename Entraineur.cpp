@@ -9,7 +9,7 @@ Entraineur::Entraineur(std::string poste, std::string nom) {
     setNom(nom);
 }
 
-void Entraineur::setPoste(std::string &poste) {
+void Entraineur::setPoste(const std::string &poste) {
     _poste = poste;
 }
 
