@@ -25,6 +25,8 @@ public:
     Equipe();
 
     void ajouterAlignement();
+    void ajouterGardien();
+    void modifierAlignement(Joueur* joueur1, Joueur* joueur2);
 
     const std::list<Personne*>& getPersonnes() const;
 

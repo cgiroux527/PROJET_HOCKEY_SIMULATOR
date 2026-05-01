@@ -18,8 +18,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     afficherDonnees();
 
     ui->TitreSim->setEnabled(false);
+    ui->TitreTableauCoachs->setEnabled(false);
+    ui->TitreTableauJoueurs->setEnabled(false);
+
     connect(ui->BoutonPageSim, &QPushButton::clicked, this, [this]() {
-    ui->MultiPageWidget->setCurrentIndex(0);
+        ui->MultiPageWidget->setCurrentIndex(1);
+    });
+
+    connect(ui->BoutonPageClassement, &QPushButton::clicked, this, [this]() {
+        ui->MultiPageWidget->setCurrentIndex(2);
     });
 
 }
