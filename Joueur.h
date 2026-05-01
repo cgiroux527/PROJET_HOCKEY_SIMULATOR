@@ -18,8 +18,8 @@ public:
     void setNumero(int numero);
     void setPosition(const std::string& position);
 
-    int getNumero();
-    const std::string& getPosition();
+    int getNumero() override;
+    const std::string& getPosition() override;
 
     void afficher() override;
 };

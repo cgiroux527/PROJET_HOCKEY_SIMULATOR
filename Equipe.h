@@ -13,8 +13,7 @@
 
 class Equipe {
 private:
-    std::list<Joueur> _joueurs;
-    std::vector<Entraineur> _entraineurs;
+    std::list<Personne*> _personnes;
 
     std::vector<std::vector<Joueur>> _alignementAttaque;
     std::vector<std::vector<Joueur>> _alignementDefense;
@@ -25,11 +24,9 @@ private:
 public:
     Equipe();
 
-    std::list<Joueur> getJoueurs();
-    std::vector<Entraineur> getEntraineur();
-
     void ajouterAlignement();
-    void ajouterGardien();
+
+    const std::list<Personne*>& getPersonnes() const;
 
     void charger(const std::string& nomFichier);
     void sauvegarder(const std::string& nomFichier);

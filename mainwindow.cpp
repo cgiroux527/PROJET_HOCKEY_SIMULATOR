@@ -15,7 +15,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    //afficherDonnees();
+    afficherDonnees();
 
     ui->TitreSim->setEnabled(false);
     connect(ui->BoutonPageSim, &QPushButton::clicked, this, [this]() {
@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 }
 
-void MainWindow::afficherDonnees() {
+void MainWindow::afficherDonnees() const {
     ui->TableauJoueurs->setRowCount(0);
     ui->TableauEntraineurs->setRowCount(0);
 
@@ -35,20 +35,21 @@ void MainWindow::afficherDonnees() {
     equipeCharge.charger("../equipe1.csv");
 
     int row = 0;
-    for (auto it = equipeCharge.getJoueurs().begin(); it != equipeCharge.getJoueurs().end(); it++) {
-        ui->TableauJoueurs->insertRow(row);
-        ui->TableauJoueurs->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(it->getNom())));
-        ui->TableauJoueurs->setItem(row, 1, new QTableWidgetItem(QString::number(it->getNumero())));
-        ui->TableauJoueurs->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(it->getPosition())));
-        row++;
-    }
 
     int row2 = 0;
-    for (auto it = equipeCharge.getEntraineur().begin(); it != equipeCharge.getEntraineur().end(); it++) {
-        ui->TableauEntraineurs->insertRow(row2);
-        ui->TableauEntraineurs->setItem(row2, 0, new QTableWidgetItem(QString::fromStdString(it->getNom())));
-        ui->TableauEntraineurs->setItem(row2, 1, new QTableWidgetItem(QString::fromStdString(it->getPoste())));
-        row2++;
+    for (auto personne : equipeCharge.getPersonnes()) {
+        if (personne->getNumero() != 0) {
+            ui->TableauJoueurs->insertRow(row);
+            ui->TableauJoueurs->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(personne->getNom())));
+            ui->TableauJoueurs->setItem(row, 1, new QTableWidgetItem(QString::number(personne->getNumero())));
+            ui->TableauJoueurs->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(personne->getPosition())));
+            row++;
+        } else {
+            ui->TableauEntraineurs->insertRow(row2);
+            ui->TableauEntraineurs->setItem(row2, 0, new QTableWidgetItem(QString::fromStdString(personne->getNom())));
+            ui->TableauEntraineurs->setItem(row2, 1, new QTableWidgetItem(QString::fromStdString(personne->getPosition())));
+            row2++;
+        }
     }
 }
 

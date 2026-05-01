@@ -22,7 +22,7 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
-    void afficherDonnees();
+    void afficherDonnees() const;
     void passerPageSimulation();
 
     ~MainWindow() override;

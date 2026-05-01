@@ -12,6 +12,7 @@ class Personne {
 protected:
     std::string _nom;
 
+
 public:
     Personne(std::string nom);
 
@@ -19,6 +20,10 @@ public:
 
     const std::string& getNom();
     void setNom(const std::string& nom);
+
+    virtual int getNumero() = 0;
+    virtual const std::string& getPosition() = 0;
+
     virtual void afficher() = 0;
 
 };

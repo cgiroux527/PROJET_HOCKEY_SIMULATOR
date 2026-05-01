@@ -17,6 +17,10 @@ void Entraineur::afficher() {
 
 }
 
-const std::string &Entraineur::getPoste() {
+const std::string &Entraineur::getPosition() {
     return _poste;
+}
+
+int Entraineur::getNumero() {
+    return 0;
 }
