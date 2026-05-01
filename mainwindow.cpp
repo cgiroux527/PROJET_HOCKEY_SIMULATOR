@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     });
 
     connect(ui->BoutonPageClassement, &QPushButton::clicked, this, [this]() {
-        ui->MultiPageWidget->setCurrentIndex(2);
+        ui->MultiPageWidget->setCurrentIndex(0);
     });
 
 }
