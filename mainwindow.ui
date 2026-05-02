@@ -42,16 +42,19 @@
         <height>631</height>
        </rect>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>381</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(0, 0, 127);
-selection-background-color: rgb(255, 255, 255);
-selection-color: rgb(255, 255, 255);
 border-right-color: rgb(255, 255, 255);
-selection-color: rgb(255, 255, 255);
 gridline-color: rgb(255, 255, 255);
 border-color: rgb(255, 255, 255);
 border-top-color: rgb(255, 255, 255);
-selection-color: rgb(255, 255, 255);</string>
+</string>
       </property>
       <row>
        <property name="text">
@@ -333,6 +336,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Tableau des joueurs meneurs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
+     <widget class="QLabel" name="ImageBackround">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>0</y>
+        <width>881</width>
+        <height>651</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <zorder>ImageBackround</zorder>
+     <zorder>TableauJoueurs</zorder>
+     <zorder>BoutonPageSim</zorder>
+     <zorder>TableauEntraineurs</zorder>
+     <zorder>TitreTableauCoachs</zorder>
+     <zorder>TitreSim</zorder>
+     <zorder>TitreTableauJoueurs</zorder>
     </widget>
     <widget class="QWidget" name="PageSimulation">
      <widget class="QTextEdit" name="TitreSim_2">
@@ -371,7 +394,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <string notr="true">background-color: rgb(0, 0, 127);</string>
       </property>
       <property name="text">
-       <string>Aller au classement</string>
+       <string>Lancer la simulation</string>
       </property>
      </widget>
     </widget>
@@ -416,6 +439,22 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BoutonAccueil">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>370</y>
+        <width>171</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 0, 127);</string>
+      </property>
+      <property name="text">
+       <string>Revenir à l'accueil</string>
       </property>
      </widget>
     </widget>

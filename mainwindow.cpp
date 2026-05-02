@@ -6,7 +6,7 @@
 #include "mainwindow.h"
 
 #include <QPushButton>
-
+#include <QPixmap>
 #include "Equipe.h"
 #include "Joueur.h"
 #include "ui_MainWindow.h"
@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     afficherDonnees();
 
     ui->TitreSim->setEnabled(false);
+    ui->TitreSim_2->setEnabled(false);
+    ui->TitreSim_3->setEnabled(false);
     ui->TitreTableauCoachs->setEnabled(false);
     ui->TitreTableauJoueurs->setEnabled(false);
 
@@ -26,9 +28,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     });
 
     connect(ui->BoutonPageClassement, &QPushButton::clicked, this, [this]() {
+        ui->MultiPageWidget->setCurrentIndex(2);
+    });
+
+    connect(ui->BoutonAccueil, &QPushButton::clicked, this, [this]() {
         ui->MultiPageWidget->setCurrentIndex(0);
     });
 
+    QPixmap pix("C:/Users/mingo/CLionProjects/PROJET_HOCKEY_SIMULATOR/Images/chat.png");
+    if (!pix.isNull()) {
+        ui->ImageBackround->setPixmap(pix);
+        ui->ImageBackround->setScaledContents(true);
+    } else {
+        qDebug() << "Image non chargée";
+    }
 }
 
 void MainWindow::afficherDonnees() const {
