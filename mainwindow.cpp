@@ -22,12 +22,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->TitreSim_3->setEnabled(false);
     ui->TitreTableauCoachs->setEnabled(false);
     ui->TitreTableauJoueurs->setEnabled(false);
+    ui->TxtAlignement->setEnabled(false);
 
     connect(ui->BoutonPageSim, &QPushButton::clicked, this, [this]() {
         ui->MultiPageWidget->setCurrentIndex(1);
     });
 
-    connect(ui->BoutonPageClassement, &QPushButton::clicked, this, [this]() {
+    connect(ui->BoutonSim, &QPushButton::clicked, this, [this]() {
         ui->MultiPageWidget->setCurrentIndex(2);
     });
 
@@ -39,6 +40,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (!pix.isNull()) {
         ui->ImageBackround->setPixmap(pix);
         ui->ImageBackround->setScaledContents(true);
+    } else {
+        qDebug() << "Image non chargée";
+    }
+
+    QPixmap pix2("C:/Users/mingo/CLionProjects/PROJET_HOCKEY_SIMULATOR/Images/ice.png");
+    if (!pix.isNull()) {
+        ui->ImagePatinoire->setPixmap(pix2);
+        ui->ImagePatinoire->setScaledContents(true);
     } else {
         qDebug() << "Image non chargée";
     }
