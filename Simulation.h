@@ -10,10 +10,13 @@
 
 class Simulation {
 private:
-  std::queue<Match*> _calendrier;
+  std::queue<Match> _calendrier;
 
 public:
   Simulation();
+
+  void jouerPartie();
+
 
 };
 
