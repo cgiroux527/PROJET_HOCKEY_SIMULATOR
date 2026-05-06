@@ -59,20 +59,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         _positionSelectionnee = "G";
         afficherRemplacements("G");
     });
-    connect(ui->listeWidget, &QListWidget::itemClicked, this,
-[this](QListWidgetItem* item)
-{
+    connect(ui->listeWidget, &QListWidget::itemClicked, this,[this](QListWidgetItem* item){
     Joueur* nouveau = trouverJoueur(item->text().toStdString());
     if (!nouveau || !_joueurActif) return;
-    // Trouver index du joueur actif
-    for (int i = 0; i < _lineup.size(); i++)
-    {
-        if (_lineup[i] == _joueurActif)
-        {
+
+    for (int i = 0; i < _lineup.size(); i++) {
+        if (_lineup[i] == _joueurActif) {
             Joueur* ancien = _lineup[i];
             _lineup[i] = nouveau;
             _disponibles.push_back(ancien);
             enleverDisponible(nouveau);
+            _joueurActif = nullptr;
             break;
         }
     }
@@ -148,17 +145,32 @@ void MainWindow::chargerJoueursDepuisEquipe() {
     }
 }
 
-void MainWindow::initialiserLineup() {
+void MainWindow::initialiserLineup()
+{
     _lineup.clear();
     _disponibles.clear();
 
+    Joueur* lw = nullptr;
+    Joueur* c = nullptr;
+    Joueur* rw = nullptr;
+    Joueur* d1 = nullptr;
+    Joueur* d2 = nullptr;
+    Joueur* g = nullptr;
+
     for (auto j : _joueurs)
     {
-        if (_lineup.size() < 5) // test simple
-            _lineup.push_back(j);
-        else
-            _disponibles.push_back(j);
+        std::string pos = j->getPosition();
+
+        if (pos == "LW" && !lw) lw = j;
+        else if (pos == "C" && !c) c = j;
+        else if (pos == "RW" && !rw) rw = j;
+        else if (pos == "D" && !d1) d1 = j;
+        else if (pos == "D" && !d2) d2 = j;
+        else if (pos == "G" && !g) g = j;
+        else _disponibles.push_back(j);
     }
+
+    _lineup = { lw, c, rw, d1, d2, g };
 }
 
 void MainWindow::afficherRemplacements(const std::string& position) {
@@ -199,13 +211,20 @@ void MainWindow::enleverDisponible(Joueur* j) {
     }
 }
 
-void MainWindow::rafraichirUI() {
-    ui->BoutonLW->setText(QString::fromStdString(_lineup[0]->getNom() + " #" + std::to_string(_lineup[0]->getNumero())));
-    ui->BoutonC->setText(QString::fromStdString(_lineup[0]->getNom() + " #" + std::to_string(_lineup[0]->getNumero())));
-    ui->BoutonRW->setText(QString::fromStdString(_lineup[0]->getNom() + " #" + std::to_string(_lineup[0]->getNumero())));
-    ui->BoutonD1->setText(QString::fromStdString(_lineup[0]->getNom() + " #" + std::to_string(_lineup[0]->getNumero())));
-    ui->BoutonD2->setText(QString::fromStdString(_lineup[0]->getNom() + " #" + std::to_string(_lineup[0]->getNumero())));
-    ui->BoutonG->setText(QString::fromStdString(_lineup[0]->getNom() + " #" + std::to_string(_lineup[0]->getNumero())));
+void MainWindow::rafraichirUI()
+{
+    auto format = [](Joueur* j) {
+        if (!j) return QString("VIDE");
+        return QString::fromStdString(
+            j->getNom() + " #" + std::to_string(j->getNumero())
+        );
+    };
+    ui->BoutonLW->setText(format(_lineup[0]));
+    ui->BoutonC->setText(format(_lineup[1]));
+    ui->BoutonRW->setText(format(_lineup[2]));
+    ui->BoutonD1->setText(format(_lineup[3]));
+    ui->BoutonD2->setText(format(_lineup[4]));
+    ui->BoutonG->setText(format(_lineup[5]));
 }
 
 MainWindow::~MainWindow() {

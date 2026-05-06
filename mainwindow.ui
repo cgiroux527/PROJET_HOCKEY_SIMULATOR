@@ -431,9 +431,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <widget class="QPushButton" name="BoutonLW">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>30</x>
          <y>190</y>
-         <width>121</width>
+         <width>131</width>
          <height>51</height>
         </rect>
        </property>
@@ -463,9 +463,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <widget class="QPushButton" name="BoutonRW">
        <property name="geometry">
         <rect>
-         <x>340</x>
+         <x>320</x>
          <y>190</y>
-         <width>121</width>
+         <width>131</width>
          <height>51</height>
         </rect>
        </property>
@@ -496,9 +496,9 @@ color: rgb(0, 0, 0);</string>
       <widget class="QPushButton" name="BoutonG">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>160</x>
          <y>400</y>
-         <width>141</width>
+         <width>161</width>
          <height>51</height>
         </rect>
        </property>
@@ -555,8 +555,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <rect>
          <x>480</x>
          <y>140</y>
-         <width>401</width>
-         <height>391</height>
+         <width>161</width>
+         <height>131</height>
         </rect>
        </property>
        <property name="styleSheet">
