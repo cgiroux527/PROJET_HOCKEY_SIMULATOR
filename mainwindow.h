@@ -43,7 +43,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
 
     void afficherDonnees() const;
-    void passerPageSimulation();
+
 
     ~MainWindow() override;
 };
