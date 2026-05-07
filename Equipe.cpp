@@ -44,13 +44,7 @@ void Equipe::sauvegarder(const std::string &nomFichier) {
         std::cerr << "L'ouverture du fichier a échoué." << std::endl;
         return;
     }
-    for (auto & _personne : _personnes) {
-        auto* j = dynamic_cast<Joueur*>(_personne);
-
-        if (j) {
-            fichier << j->getNom() << ";" << j->getNumero() << ";" << j->getPosition() << ";" << j->getOVR() << '\n';
-        }
-    }
+    //  TODO ECRIRE DANS LE FICHIER LES DONNEES DE LA SIMULATION
 
     fichier.close();
 }
