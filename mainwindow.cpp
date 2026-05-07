@@ -11,7 +11,7 @@
 #include "ui_MainWindow.h"
 
 
-
+// Constructeur
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     // Enlever la modif des titres
@@ -21,15 +21,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->TitreTableauCoachs->setEnabled(false);
     ui->TitreTableauJoueurs->setEnabled(false);
     ui->TxtAlignement->setEnabled(false);
+    ui->TitreRemplacement->setEnabled(false);
+    ui->TitreRooster->setEnabled(false);
     afficherDonnees();
 
-    // Deuxieme page/lineup
+    // Deuxieme page/lineup/liste de rooster
     _equipe.charger("../equipe1.csv");
     chargerJoueursDepuisEquipe();
     remplirListeRoster();
     initialiserLineup();
     rafraichirUI();
+    // Changements
     connect(ui->ListeRooster, &QListWidget::itemChanged, this, &MainWindow::verifierLimiteRoster);
+    // Boutons pour changements
     connect(ui->BoutonLW, &QPushButton::clicked, this, [this]() {
     _joueurActif = _lineup[0];
     _positionSelectionnee = "LW";
@@ -60,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         _positionSelectionnee = "G";
         afficherRemplacements("G");
     });
+    // Trouver un joueur de la meme position pour changer
     connect(ui->listeWidget, &QListWidget::itemClicked, this,[this](QListWidgetItem* item){
     Joueur* nouveau = trouverJoueur(item->text().toStdString());
     if (!nouveau || !_joueurActif) return;
@@ -74,7 +79,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             break;
         }
     }
-
         rafraichirUI();
         remplirListeRoster();
 });
@@ -106,7 +110,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     // Fin du constructeur
 }
-
+// Afficher la première page/tableaux des joueurs et entraîneurs
 void MainWindow::afficherDonnees() const {
     ui->TableauJoueurs->setRowCount(0);
     ui->TableauEntraineurs->setRowCount(0);
@@ -136,17 +140,17 @@ void MainWindow::afficherDonnees() const {
         }
     }
 }
-
+//Charger les joueurs
 void MainWindow::chargerJoueursDepuisEquipe() {
     _joueurs.clear();
 
     for (auto personne : _equipe.getPersonnes()) {
-        Joueur* j = dynamic_cast<Joueur*>(personne);
+        auto* j = dynamic_cast<Joueur*>(personne);
         if (j != nullptr)
             _joueurs.push_back(j);
     }
 }
-
+// Le lineup sur la deuxieme page, le charger
 void MainWindow::initialiserLineup() {
     _lineup.clear();
     _disponibles.clear();
@@ -172,7 +176,7 @@ void MainWindow::initialiserLineup() {
 
     _lineup = { lw, c, rw, d1, d2, g };
 }
-
+// Swap pour le remplacement
 void MainWindow::afficherRemplacements(const std::string& position) {
     ui->listeWidget->clear();
 
@@ -202,7 +206,7 @@ void MainWindow::enleverDisponible(Joueur* j) {
         }
     }
 }
-
+// Quand on change un joueur, il s<affiche sur le bouton
 void MainWindow::rafraichirUI() {
     auto format = [](Joueur* j) {
         if (!j) return QString("VIDE");
@@ -233,7 +237,7 @@ void MainWindow::sauvegarderSelectionRoster() {
         itJoueur++;
     }
 }
-
+// Remplir la liste du rooster sur la page 2
 void MainWindow::remplirListeRoster() {
     ui->ListeRooster->clear();
 
@@ -249,7 +253,7 @@ void MainWindow::remplirListeRoster() {
         ui->ListeRooster->addItem(item);
     }
 }
-
+// S'assurer que le rooster ne depasse pas 20 joueurs
 void MainWindow::verifierLimiteRoster(QListWidgetItem* item) {
     int nbCoches = 0;
 

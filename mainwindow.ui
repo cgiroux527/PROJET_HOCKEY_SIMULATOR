@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="PageAccueil">
      <widget class="QTableWidget" name="TableauJoueurs">
@@ -237,22 +237,22 @@ gridline-color: rgb(255, 255, 255);</string>
       </property>
       <row>
        <property name="text">
-        <string>Nouvelle ligne</string>
+        <string>Coach</string>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>Nouvelle ligne</string>
+        <string>Coach</string>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>Nouvelle ligne</string>
+        <string>Coach</string>
        </property>
       </row>
       <row>
        <property name="text">
-        <string>Nouvelle ligne</string>
+        <string>Coach</string>
        </property>
       </row>
       <column>
@@ -575,7 +575,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <string notr="true">background-color: rgb(0, 0, 127);</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="TitreRooster">
        <property name="geometry">
         <rect>
          <x>480</x>
@@ -598,7 +598,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Veuillez cocher les joueurs qui joueront le prochain match &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_2">
+      <widget class="QTextEdit" name="TitreRemplacement">
        <property name="geometry">
         <rect>
          <x>0</x>
