@@ -124,6 +124,7 @@ void MainWindow::afficherDonnees() const {
             ui->TableauJoueurs->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(personne->getNom())));
             ui->TableauJoueurs->setItem(row, 1, new QTableWidgetItem(QString::number(personne->getNumero())));
             ui->TableauJoueurs->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(personne->getPosition())));
+            ui->TableauJoueurs->setItem(row, 3, new QTableWidgetItem(QString::number(personne->getOVR())));
             row++;
         } else {
             ui->TableauEntraineurs->insertRow(row2);

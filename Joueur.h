@@ -15,7 +15,7 @@ private:
 
 public:
     void setOVR(int ovr);
-    int getOVR();
+    int getOVR() override;
 
     Joueur(int numero,std::string position, std::string nom, int ovr);
 

@@ -24,6 +24,8 @@ public:
     virtual int getNumero() = 0;
     virtual const std::string& getPosition() = 0;
 
+    virtual int getOVR();
+
     virtual void afficher() = 0;
 
 };

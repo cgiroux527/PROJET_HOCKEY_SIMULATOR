@@ -25,4 +25,6 @@ void Personne::setNom(const std::string& nom) {
     _nom = nom;
 }
 
-
+int Personne::getOVR() {
+    return 0;
+}
