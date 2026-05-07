@@ -181,7 +181,7 @@ void MainWindow::afficherRemplacements(const std::string& position) {
         if (j->getPosition() == position)
         {
             QString texte = QString::fromStdString(
-                j->getNom() + " #" + std::to_string(j->getNumero())
+            j->getNom() + " | OVR " + std::to_string(j->getOVR())
             );
 
             ui->listeWidget->addItem(texte);
@@ -192,7 +192,7 @@ void MainWindow::afficherRemplacements(const std::string& position) {
 Joueur* MainWindow::trouverJoueur(const std::string& texte) {
     for (auto j : _joueurs)
     {
-        std::string nom = j->getNom() + " #" + std::to_string(j->getNumero());
+        std::string nom = j->getNom() + " | OVR " + std::to_string(j->getOVR());
 
         if (texte == nom)
             return j;
@@ -216,7 +216,7 @@ void MainWindow::rafraichirUI()
     auto format = [](Joueur* j) {
         if (!j) return QString("VIDE");
         return QString::fromStdString(
-            j->getNom() + " #" + std::to_string(j->getNumero())
+        j->getNom() + "\nOVR " + std::to_string(j->getOVR())
         );
     };
     ui->BoutonLW->setText(format(_lineup[0]));

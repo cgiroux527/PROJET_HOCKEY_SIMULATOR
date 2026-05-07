@@ -9,11 +9,15 @@
 
 class Joueur : public Personne {
 private:
+    int _ovr;
     int _numero;
     std::string _position;
 
 public:
-    Joueur(int numero,std::string position, std::string nom);
+    void setOVR(int ovr);
+    int getOVR();
+
+    Joueur(int numero,std::string position, std::string nom, int ovr);
 
     void setNumero(int numero);
     void setPosition(const std::string& position);

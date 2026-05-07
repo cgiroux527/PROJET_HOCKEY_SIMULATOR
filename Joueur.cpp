@@ -4,10 +4,11 @@
 
 #include "Joueur.h"
 
-Joueur::Joueur(int numero, std::string position, std::string nom) {
+Joueur::Joueur(int numero, std::string position, std::string nom, int ovr) {
     setNom(nom);
     setNumero(numero);
     setPosition(position);
+    setOVR(ovr);
 }
 
 void Joueur::afficher() {
@@ -30,3 +31,10 @@ const std::string& Joueur::getPosition() {
     return _position;
 }
 
+void Joueur::setOVR(int ovr) {
+    _ovr = ovr;
+}
+
+int Joueur::getOVR() {
+    return _ovr;
+}

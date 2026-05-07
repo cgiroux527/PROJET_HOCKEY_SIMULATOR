@@ -27,7 +27,7 @@ void Equipe::charger(const std::string &nomFichier) {
 
     for (size_t i = 0; i < _parser.getNumRows(); i++) {
         if (_parser.getInt(i,1) != 0) {
-            _personnes.push_back(new Joueur(_parser.getInt(i,1),_parser.getString(i,2),_parser.getString(i,0)));
+            _personnes.push_back(new Joueur(_parser.getInt(i,1),_parser.getString(i,2),_parser.getString(i,0),_parser.getInt(i,3)));
         } else {
             _personnes.push_back(new Entraineur(_parser.getString(i,2),_parser.getString(i,0)));
         }
@@ -44,8 +44,12 @@ void Equipe::sauvegarder(const std::string &nomFichier) {
         std::cerr << "L'ouverture du fichier a échoué." << std::endl;
         return;
     }
-    for (auto it = _personnes.begin(); it != _personnes.end(); it++) {
-        fichier << (*it)->getNom() << ";" << (*it)->getNumero() << ";" << (*it)->getPosition() << '\n';
+    for (auto & _personne : _personnes) {
+        auto* j = dynamic_cast<Joueur*>(_personne);
+
+        if (j) {
+            fichier << j->getNom() << ";" << j->getNumero() << ";" << j->getPosition() << ";" << j->getOVR() << '\n';
+        }
     }
 
     fichier.close();
