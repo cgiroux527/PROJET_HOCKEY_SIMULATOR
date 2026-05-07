@@ -4,8 +4,7 @@
 
 // You may need to build the project (run Qt uic code generator) to get "ui_MainWindow.h" resolved
 #include "mainwindow.h"
-
-#include <QPushButton>
+#include <QMessageBox>
 #include <QPixmap>
 #include "Equipe.h"
 #include "Joueur.h"
@@ -27,8 +26,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Deuxieme page/lineup
     _equipe.charger("../equipe1.csv");
     chargerJoueursDepuisEquipe();
+    remplirListeRoster();
     initialiserLineup();
     rafraichirUI();
+    connect(ui->ListeRooster, &QListWidget::itemChanged, this, &MainWindow::verifierLimiteRoster);
     connect(ui->BoutonLW, &QPushButton::clicked, this, [this]() {
     _joueurActif = _lineup[0];
     _positionSelectionnee = "LW";
@@ -64,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     if (!nouveau || !_joueurActif) return;
 
     for (int i = 0; i < _lineup.size(); i++) {
-        if (_lineup[i] == _joueurActif) {
+        if (_lineup[i]->getNumero() == _joueurActif->getNumero()) {
             Joueur* ancien = _lineup[i];
             _lineup[i] = nouveau;
             _disponibles.push_back(ancien);
@@ -74,7 +75,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         }
     }
 
-    rafraichirUI();
+        rafraichirUI();
+        remplirListeRoster();
 });
 
     // 3 Boutons pour naviguer dans les pages
@@ -138,16 +140,14 @@ void MainWindow::afficherDonnees() const {
 void MainWindow::chargerJoueursDepuisEquipe() {
     _joueurs.clear();
 
-    for (auto personne : _equipe.getPersonnes())
-    {
+    for (auto personne : _equipe.getPersonnes()) {
         Joueur* j = dynamic_cast<Joueur*>(personne);
         if (j != nullptr)
             _joueurs.push_back(j);
     }
 }
 
-void MainWindow::initialiserLineup()
-{
+void MainWindow::initialiserLineup() {
     _lineup.clear();
     _disponibles.clear();
 
@@ -158,8 +158,7 @@ void MainWindow::initialiserLineup()
     Joueur* d2 = nullptr;
     Joueur* g = nullptr;
 
-    for (auto j : _joueurs)
-    {
+    for (auto j : _joueurs) {
         std::string pos = j->getPosition();
 
         if (pos == "LW" && !lw) lw = j;
@@ -177,13 +176,9 @@ void MainWindow::initialiserLineup()
 void MainWindow::afficherRemplacements(const std::string& position) {
     ui->listeWidget->clear();
 
-    for (auto j : _disponibles)
-    {
-        if (j->getPosition() == position)
-        {
-            QString texte = QString::fromStdString(
-            j->getNom() + " | OVR " + std::to_string(j->getOVR())
-            );
+    for (auto j : _disponibles) {
+        if (j->getPosition() == position) {
+            QString texte = QString::fromStdString(j->getNom() + " | OVR " + std::to_string(j->getOVR()));
 
             ui->listeWidget->addItem(texte);
         }
@@ -191,10 +186,8 @@ void MainWindow::afficherRemplacements(const std::string& position) {
 }
 
 Joueur* MainWindow::trouverJoueur(const std::string& texte) {
-    for (auto j : _joueurs)
-    {
+    for (auto j : _joueurs) {
         std::string nom = j->getNom() + " | OVR " + std::to_string(j->getOVR());
-
         if (texte == nom)
             return j;
     }
@@ -202,23 +195,18 @@ Joueur* MainWindow::trouverJoueur(const std::string& texte) {
 }
 
 void MainWindow::enleverDisponible(Joueur* j) {
-    for (auto it = _disponibles.begin(); it != _disponibles.end(); ++it)
-    {
-        if (*it == j)
-        {
+    for (auto it = _disponibles.begin(); it != _disponibles.end(); ++it) {
+        if (*it == j) {
             _disponibles.erase(it);
             return;
         }
     }
 }
 
-void MainWindow::rafraichirUI()
-{
+void MainWindow::rafraichirUI() {
     auto format = [](Joueur* j) {
         if (!j) return QString("VIDE");
-        return QString::fromStdString(
-        j->getNom() + "\nOVR " + std::to_string(j->getOVR())
-        );
+        return QString::fromStdString(j->getNom() + "\nOVR " + std::to_string(j->getOVR()));
     };
     ui->BoutonLW->setText(format(_lineup[0]));
     ui->BoutonC->setText(format(_lineup[1]));
@@ -226,6 +214,63 @@ void MainWindow::rafraichirUI()
     ui->BoutonD1->setText(format(_lineup[3]));
     ui->BoutonD2->setText(format(_lineup[4]));
     ui->BoutonG->setText(format(_lineup[5]));
+}
+
+void MainWindow::sauvegarderSelectionRoster() {
+    _joueursMatch.clear();
+    _joueursReserve.clear();
+
+    auto itJoueur = _joueurs.begin();
+
+    for (int i = 0; i < ui->ListeRooster->count(); i++) {
+        if (itJoueur == _joueurs.end())
+            break;
+        QListWidgetItem* item = ui->ListeRooster->item(i);
+        if (item->checkState() == Qt::Checked)
+            _joueursMatch.push_back(*itJoueur);
+        else
+            _joueursReserve.push_back(*itJoueur);
+        itJoueur++;
+    }
+}
+
+void MainWindow::remplirListeRoster() {
+    ui->ListeRooster->clear();
+
+    for (auto j : _joueurs) {
+        QString texte = QString::fromStdString(j->getNom() + " | " + j->getPosition() + " | OVR " + std::to_string(j->getOVR()));
+        auto* item = new QListWidgetItem(texte);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        if (estDansLineup(j))
+            item->setCheckState(Qt::Checked);
+        else
+            item->setCheckState(Qt::Unchecked);
+
+        ui->ListeRooster->addItem(item);
+    }
+}
+
+void MainWindow::verifierLimiteRoster(QListWidgetItem* item) {
+    int nbCoches = 0;
+
+    for (int i = 0; i < ui->ListeRooster->count(); i++) {
+        if (ui->ListeRooster->item(i)->checkState() == Qt::Checked) {
+            nbCoches++;
+        }
+    }
+    if (nbCoches > 20) {
+        item->setCheckState(Qt::Unchecked);
+
+        QMessageBox::warning(this, "Limite atteinte", "Maximum de 20 joueurs.");
+    }
+}
+
+bool MainWindow::estDansLineup(Joueur* j) {
+    for (auto l : _lineup) {
+        if (l == j)
+            return true;
+    }
+    return false;
 }
 
 MainWindow::~MainWindow() {

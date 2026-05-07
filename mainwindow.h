@@ -9,8 +9,10 @@
 #include "Joueur.h"
 #include "Equipe.h"
 #include <vector>
+#include <list>
 
 
+class QListWidgetItem;
 QT_BEGIN_NAMESPACE
 
 namespace Ui {
@@ -24,6 +26,9 @@ class MainWindow : public QMainWindow {
 private:
     Equipe _equipe;
 
+    std::list<Joueur*> _joueursMatch;
+    std::list<Joueur*> _joueursReserve;
+
     std::vector<Joueur*> _joueurs;
     std::vector<Joueur*> _lineup;
     std::vector<Joueur*> _disponibles;
@@ -32,6 +37,10 @@ private:
     std::string _positionSelectionnee;
 
     void chargerJoueursDepuisEquipe();
+    void sauvegarderSelectionRoster();
+    void remplirListeRoster();
+    void verifierLimiteRoster(QListWidgetItem* item);
+    bool estDansLineup(Joueur *j);
     void initialiserLineup();
     void afficherRemplacements(const std::string& position);
     Joueur* trouverJoueur(const std::string& texte);
