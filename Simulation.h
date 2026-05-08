@@ -7,6 +7,8 @@
 
 #include <queue>
 #include "Match.h"
+#include "Equipe.h"
+#include "ResultatMatch.h"
 
 class Simulation {
 private:
@@ -15,9 +17,9 @@ private:
 public:
   Simulation();
 
-  void jouerPartie();
+  ResultatMatch simulerMatch(const Equipe& equipeSimu);
 
-
+  const std::queue<Match>& getCalendrier() const;
 };
 
 

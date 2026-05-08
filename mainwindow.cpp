@@ -206,7 +206,7 @@ void MainWindow::enleverDisponible(Joueur* j) {
         }
     }
 }
-// Quand on change un joueur, il s<affiche sur le bouton
+// Quand on change un joueur, il s'affiche sur le bouton
 void MainWindow::rafraichirUI() {
     auto format = [](Joueur* j) {
         if (!j) return QString("VIDE");
@@ -237,7 +237,7 @@ void MainWindow::sauvegarderSelectionRoster() {
         itJoueur++;
     }
 }
-// Remplir la liste du rooster sur la page 2
+// Remplir la liste du roster sur la page 2
 void MainWindow::remplirListeRoster() {
     ui->ListeRooster->clear();
 
@@ -253,7 +253,7 @@ void MainWindow::remplirListeRoster() {
         ui->ListeRooster->addItem(item);
     }
 }
-// S'assurer que le rooster ne depasse pas 20 joueurs
+// S'assurer que le roster ne depasse pas 20 joueurs
 void MainWindow::verifierLimiteRoster(QListWidgetItem* item) {
     int nbCoches = 0;
 

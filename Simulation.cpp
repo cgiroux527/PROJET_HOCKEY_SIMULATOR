@@ -2,23 +2,49 @@
 // Created by Utilisateur on 2026-04-29.
 //
 #include <string>
-#include <ctime>
-#include <algorithm>
 #include <random>
+#include "constantesSimu.h"
 #include "Simulation.h"
-
-const int NOMBRE_MATCH_SAISON = 82;
-const std::string EQUIPES[] = {"Boston Browns","New york Avenger", "Tampa Bay Thunder", "Ottawa Ministers"};
-int overallEquipes[] = {1233,1,31,23};
-const int TAILLE = 4;
 
 Simulation::Simulation() {
     std::random_device aleatoire;
-    std::mt19937 generateur(aleatoire());
-    std::shuffle(overallEquipes, overallEquipes + TAILLE, generateur);
+    std::mt19937 gen(aleatoire());
+    std::uniform_int_distribution<> index(0, TAILLE - 1);
 
     for (size_t i = 0; i < NOMBRE_MATCH_SAISON; i++) {
-        int indexAleatoire = std::rand() % TAILLE;
-        _calendrier.push(Match(EQUIPES[indexAleatoire], overallEquipes[indexAleatoire]));
+        int indexEquipe = index(gen);
+        _calendrier.push(Match(EQUIPES[indexEquipe], overallEquipes[indexEquipe]));
     }
 }
+
+ResultatMatch Simulation::simulerMatch(const Equipe& equipe) {
+    std::random_device aleatoire;
+    std::mt19937 gen(aleatoire());
+
+
+    double overallAdverse = _calendrier.front().getOverall();
+    double overallLocal = equipe.getOverall();
+    std::discrete_distribution<> dist({overallAdverse, overallLocal});
+
+    int gagnant = dist(gen);
+    int scoreLocal = 0;
+    int scoreAdverse = 0;
+
+    double bonus = (std::abs(overallAdverse - overallLocal)) * MULTIPLICATEUR_BONNUS;
+    std::uniform_real_distribution<> butsBase(1.0, 4.0);
+    if (gagnant == 0) {
+        scoreAdverse = butsBase(gen) + bonus;
+        scoreLocal = std::uniform_int_distribution<>(0, scoreAdverse - 1)(gen);
+    } else {
+        scoreLocal = butsBase(gen) + bonus;
+        scoreAdverse = std::uniform_int_distribution<>(0, scoreLocal - 1)(gen);
+    }
+    _calendrier.pop();
+    return ResultatMatch(scoreLocal, scoreAdverse);
+}
+
+const std::queue<Match> &Simulation::getCalendrier() const {
+    return _calendrier;
+}
+
+

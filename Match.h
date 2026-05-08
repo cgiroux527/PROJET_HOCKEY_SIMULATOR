@@ -15,12 +15,8 @@ private:
 public:
     Match(std::string nomEquipe, int overall);
 
-    int getNomEquipe();
-    const std::string& getOverall();
-
-    void setNomEquipe(const std::string& nomEquipe);
-    void setOverall(int overall);
-
+    const std::string& getNomEquipe() const;
+    int getOverall() const;
 };
 
 

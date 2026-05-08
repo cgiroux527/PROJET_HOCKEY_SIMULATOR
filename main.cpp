@@ -11,7 +11,12 @@ int main(int argc, char *argv[]) {
     MainWindow window;
     window.show();
 
-    Simulation test;
+    /*Simulation exemple;
+    while (!exemple.getCalendrier().empty()) {
+        ResultatMatch resultat = exemple.simulerMatch(EquipeCanadiens);
+        std::cout << resultat.getScoreAdverse();
+        ...
+    }*/
 
     return QApplication::exec();
 }
