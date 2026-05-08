@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
     /*Simulation exemple;
     while (!exemple.getCalendrier().empty()) {
         ResultatMatch resultat = exemple.simulerMatch(EquipeCanadiens);
+        //S'ASSURER DE PASSER EQUIPE CANADIENS LE ROSTER CHOISI ET NON L'EQUIPE AU COMPLET
         std::cout << resultat.getScoreAdverse();
         ...
     }*/

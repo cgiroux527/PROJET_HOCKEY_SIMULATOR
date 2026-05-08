@@ -11,9 +11,15 @@ Joueur::Joueur(int numero, std::string position, std::string nom, int ovr) {
     setOVR(ovr);
 }
 
-void Joueur::afficher() {
-
+void Joueur::afficher(QTableWidget *tableJoueurs, QTableWidget *tableEntraineurs, int &rowJoueurs, int &rowEntraineurs) {
+    tableJoueurs->insertRow(rowJoueurs);
+    tableJoueurs->setItem(rowJoueurs, 0, new QTableWidgetItem(QString::fromStdString(getNom())));
+    tableJoueurs->setItem(rowJoueurs, 1, new QTableWidgetItem(QString::number(getNumero())));
+    tableJoueurs->setItem(rowJoueurs, 2, new QTableWidgetItem(QString::fromStdString(getPosition())));
+    tableJoueurs->setItem(rowJoueurs, 3, new QTableWidgetItem(QString::number(getOVR())));
+    rowJoueurs++;
 }
+
 
 void Joueur::setNumero(int numero) {
     _numero = numero;

@@ -29,7 +29,6 @@ public:
     void modifierAlignement(Joueur* joueur1, Joueur* joueur2);
 
     const std::list<Personne*>& getPersonnes() const;
-    int getOverall() const;
 
     void charger(const std::string& nomFichier);
     void sauvegarder(const std::string& nomFichier);

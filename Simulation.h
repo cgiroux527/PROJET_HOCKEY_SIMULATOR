@@ -17,7 +17,7 @@ private:
 public:
   Simulation();
 
-  ResultatMatch simulerMatch(const Equipe& equipeSimu);
+  ResultatMatch simulerMatch(const std::list<Personne*>& roster);
 
   const std::queue<Match>& getCalendrier() const;
 };

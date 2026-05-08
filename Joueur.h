@@ -25,7 +25,7 @@ public:
     int getNumero() override;
     const std::string& getPosition() override;
 
-    void afficher() override;
+    void afficher(QTableWidget* tableJoueurs, QTableWidget* tableEntraineurs, int& rowJoueurs, int& rowEntraineurs) override;
 };
 
 

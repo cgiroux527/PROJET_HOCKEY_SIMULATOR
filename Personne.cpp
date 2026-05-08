@@ -4,17 +4,12 @@
 
 #include "Personne.h"
 
-Personne::Personne(std::string nom) {
+Personne::Personne(const std::string& nom) {
     setNom(nom);
 }
 
 Personne::Personne() {
     setNom("");
-}
-
-
-void Personne::afficher() {
-
 }
 
 const std::string& Personne::getNom() {

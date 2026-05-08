@@ -17,13 +17,24 @@ Simulation::Simulation() {
     }
 }
 
-ResultatMatch Simulation::simulerMatch(const Equipe& equipe) {
+ResultatMatch Simulation::simulerMatch(const std::list<Personne*>& roster) {
     std::random_device aleatoire;
     std::mt19937 gen(aleatoire());
 
-
     double overallAdverse = _calendrier.front().getOverall();
-    double overallLocal = equipe.getOverall();
+
+    double sommeLocal = 0;
+    int nbJoueur = 0;
+    for (auto it = roster.begin(); it != roster.end(); ++it) {
+        if ((*it)->getNumero() != 0) {
+            sommeLocal += (*it)->getOVR();
+            nbJoueur++;
+        }
+        if (nbJoueur == 0) {
+            throw std::out_of_range("le roster n'a aucun joueur");
+        }
+    }
+    double overallLocal = sommeLocal/nbJoueur;
     std::discrete_distribution<> dist({overallAdverse, overallLocal});
 
     int gagnant = dist(gen);

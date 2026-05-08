@@ -7,6 +7,7 @@
 #define PROJET_HOCKEY_SIMULATOR_PERSONNE_H
 
 #include "CSVParser.h"
+#include <QTableWidget>
 
 class Personne {
 protected:
@@ -14,7 +15,9 @@ protected:
 
 
 public:
-    Personne(std::string nom);
+    virtual ~Personne() = default;
+
+    Personne(const std::string& nom);
 
     Personne();
 
@@ -26,7 +29,7 @@ public:
 
     virtual int getOVR();
 
-    virtual void afficher() = 0;
+    virtual void afficher(QTableWidget* tableJoueurs, QTableWidget* tableEntraineurs, int& rowJoueurs, int& rowEntraineurs) = 0;
 
 };
 

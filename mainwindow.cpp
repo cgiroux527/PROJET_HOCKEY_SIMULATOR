@@ -122,22 +122,9 @@ void MainWindow::afficherDonnees() const {
     equipeCharge.charger("../equipe1.csv");
 
     int row = 0;
-
     int row2 = 0;
     for (auto personne : equipeCharge.getPersonnes()) {
-        if (personne->getNumero() != 0) {
-            ui->TableauJoueurs->insertRow(row);
-            ui->TableauJoueurs->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(personne->getNom())));
-            ui->TableauJoueurs->setItem(row, 1, new QTableWidgetItem(QString::number(personne->getNumero())));
-            ui->TableauJoueurs->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(personne->getPosition())));
-            ui->TableauJoueurs->setItem(row, 3, new QTableWidgetItem(QString::number(personne->getOVR())));
-            row++;
-        } else {
-            ui->TableauEntraineurs->insertRow(row2);
-            ui->TableauEntraineurs->setItem(row2, 0, new QTableWidgetItem(QString::fromStdString(personne->getNom())));
-            ui->TableauEntraineurs->setItem(row2, 1, new QTableWidgetItem(QString::fromStdString(personne->getPosition())));
-            row2++;
-        }
+        personne->afficher(ui->TableauJoueurs,ui->TableauEntraineurs,row,row2);
     }
 }
 //Charger les joueurs

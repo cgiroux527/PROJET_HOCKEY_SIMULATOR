@@ -13,8 +13,11 @@ void Entraineur::setPoste(const std::string &poste) {
     _poste = poste;
 }
 
-void Entraineur::afficher() {
-
+void Entraineur::afficher(QTableWidget *tableJoueurs, QTableWidget *tableEntraineurs, int &rowJoueurs, int &rowEntraineurs) {
+    tableEntraineurs->insertRow(rowEntraineurs);
+    tableEntraineurs->setItem(rowEntraineurs, 0, new QTableWidgetItem(QString::fromStdString(getNom())));
+    tableEntraineurs->setItem(rowEntraineurs, 1, new QTableWidgetItem(QString::fromStdString(getPosition())));
+    rowEntraineurs++;
 }
 
 const std::string &Entraineur::getPosition() {

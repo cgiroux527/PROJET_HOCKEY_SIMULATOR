@@ -20,7 +20,7 @@ public :
     const std::string& getPosition() override;
     int getNumero() override;
 
-    void afficher() override;
+    void afficher(QTableWidget* tableJoueurs, QTableWidget* tableEntraineurs, int& rowJoueurs, int& rowEntraineurs) override;
 
 };
 

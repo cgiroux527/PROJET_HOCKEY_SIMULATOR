@@ -79,20 +79,4 @@ const std::list<Personne*>& Equipe::getPersonnes() const {
     return _personnes;
 }
 
-int Equipe::getOverall() const {
-    int somme = 0;
-    int nbJoueur = 0;
-    for (auto personne : _personnes) {
-        if (personne->getNumero() != 0) {
-            somme += personne->getOVR();
-            nbJoueur++;
-        }
-    }
-    if (nbJoueur == 0) {
-        std::cerr << "Aucune personne";
-        return 0;
-    }
-    return somme/nbJoueur;
-}
-
 
