@@ -25,6 +25,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->TitreRooster->setEnabled(false);
     afficherDonnees();
 
+    // Toujours commencer à la première page
+    ui->MultiPageWidget->setCurrentIndex(0);
+
     // Deuxieme page/lineup/liste de rooster
     _equipe.charger("../equipe1.csv");
     chargerJoueursDepuisEquipe();
