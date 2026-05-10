@@ -14,6 +14,7 @@
 // Constructeur
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+
     // Enlever la modif des titres
     ui->TitreSim->setEnabled(false);
     ui->TitreSim_2->setEnabled(false);
@@ -34,39 +35,36 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     remplirListeRoster();
     initialiserLineup();
     rafraichirUI();
+
     // Changements
     connect(ui->ListeRooster, &QListWidget::itemChanged, this, &MainWindow::verifierLimiteRoster);
+
     // Boutons pour changements
     connect(ui->BoutonLW, &QPushButton::clicked, this, [this]() {
     _joueurActif = _lineup[0];
     _positionSelectionnee = "LW";
-    afficherRemplacements("LW");
-    });
+    afficherRemplacements("LW");});
     connect(ui->BoutonC, &QPushButton::clicked, this, [this]() {
         _joueurActif = _lineup[1];
         _positionSelectionnee = "C";
-        afficherRemplacements("C");
-    });
+        afficherRemplacements("C");});
     connect(ui->BoutonRW, &QPushButton::clicked, this, [this]() {
         _joueurActif = _lineup[2];
         _positionSelectionnee = "RW";
-        afficherRemplacements("RW");
-    });
+        afficherRemplacements("RW");});
     connect(ui->BoutonD1, &QPushButton::clicked, this, [this]() {
         _joueurActif = _lineup[3];
         _positionSelectionnee = "D";
-        afficherRemplacements("D");
-    });
+        afficherRemplacements("D");});
     connect(ui->BoutonD2, &QPushButton::clicked, this, [this]() {
         _joueurActif = _lineup[4];
         _positionSelectionnee = "D";
-        afficherRemplacements("D");
-    });
+        afficherRemplacements("D");});
     connect(ui->BoutonG, &QPushButton::clicked, this, [this]() {
         _joueurActif = _lineup[5];
         _positionSelectionnee = "G";
-        afficherRemplacements("G");
-    });
+        afficherRemplacements("G");});
+
     // Trouver un joueur de la meme position pour changer
     connect(ui->listeWidget, &QListWidget::itemClicked, this,[this](QListWidgetItem* item){
     Joueur* nouveau = trouverJoueur(item->text().toStdString());
@@ -84,18 +82,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
         rafraichirUI();
         remplirListeRoster();
-});
+    });
 
     // 3 Boutons pour naviguer dans les pages
     connect(ui->BoutonPageSim, &QPushButton::clicked, this, [this]() {
-        ui->MultiPageWidget->setCurrentIndex(1);
-    });
+        ui->MultiPageWidget->setCurrentIndex(1);});
     connect(ui->BoutonSim, &QPushButton::clicked, this, [this]() {
-        ui->MultiPageWidget->setCurrentIndex(2);
-    });
+        ui->MultiPageWidget->setCurrentIndex(2);});
     connect(ui->BoutonAccueil, &QPushButton::clicked, this, [this]() {
-        ui->MultiPageWidget->setCurrentIndex(0);
-    });
+        ui->MultiPageWidget->setCurrentIndex(0);});
+
     // Affichage des images dans les labels
     QPixmap pix("C:/Users/mingo/CLionProjects/PROJET_HOCKEY_SIMULATOR/Images/chat.png");
     if (!pix.isNull()) {
@@ -113,6 +109,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     // Fin du constructeur
 }
+
 // Afficher la première page/tableaux des joueurs et entraîneurs
 void MainWindow::afficherDonnees() const {
     ui->TableauJoueurs->setRowCount(0);
@@ -130,6 +127,7 @@ void MainWindow::afficherDonnees() const {
         personne->afficher(ui->TableauJoueurs,ui->TableauEntraineurs,row,row2);
     }
 }
+
 //Charger les joueurs
 void MainWindow::chargerJoueursDepuisEquipe() {
     _joueurs.clear();
@@ -140,6 +138,7 @@ void MainWindow::chargerJoueursDepuisEquipe() {
             _joueurs.push_back(j);
     }
 }
+
 // Le lineup sur la deuxieme page, le charger
 void MainWindow::initialiserLineup() {
     _lineup.clear();
@@ -166,6 +165,7 @@ void MainWindow::initialiserLineup() {
 
     _lineup = { lw, c, rw, d1, d2, g };
 }
+
 // Swap pour le remplacement
 void MainWindow::afficherRemplacements(const std::string& position) {
     ui->listeWidget->clear();
@@ -196,6 +196,7 @@ void MainWindow::enleverDisponible(Joueur* j) {
         }
     }
 }
+
 // Quand on change un joueur, il s'affiche sur le bouton
 void MainWindow::rafraichirUI() {
     auto format = [](Joueur* j) {
@@ -210,6 +211,7 @@ void MainWindow::rafraichirUI() {
     ui->BoutonG->setText(format(_lineup[5]));
 }
 
+// Utilisation des listes joueursMatch et joueursReserve dans MainWindow.h
 void MainWindow::sauvegarderSelectionRoster() {
     _joueursMatch.clear();
     _joueursReserve.clear();
@@ -227,6 +229,7 @@ void MainWindow::sauvegarderSelectionRoster() {
         itJoueur++;
     }
 }
+
 // Remplir la liste du roster sur la page 2
 void MainWindow::remplirListeRoster() {
     ui->ListeRooster->clear();
@@ -243,6 +246,7 @@ void MainWindow::remplirListeRoster() {
         ui->ListeRooster->addItem(item);
     }
 }
+
 // S'assurer que le roster ne depasse pas 20 joueurs
 void MainWindow::verifierLimiteRoster(QListWidgetItem* item) {
     int nbCoches = 0;
