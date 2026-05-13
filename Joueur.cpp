@@ -4,7 +4,7 @@
 
 #include "Joueur.h"
 
-Joueur::Joueur(int numero, std::string position, std::string nom, int ovr) {
+Joueur::Joueur(int numero,const std::string &position,const std::string &nom, int ovr) {
     setNom(nom);
     setNumero(numero);
     setPosition(position);

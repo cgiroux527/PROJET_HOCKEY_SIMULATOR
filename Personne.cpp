@@ -12,7 +12,7 @@ Personne::Personne() {
     setNom("");
 }
 
-const std::string& Personne::getNom() {
+const std::string& Personne::getNom() const{
     return _nom;
 }
 

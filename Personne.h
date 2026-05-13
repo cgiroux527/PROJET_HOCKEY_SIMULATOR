@@ -21,7 +21,7 @@ public:
 
     Personne();
 
-    const std::string& getNom();
+    const std::string& getNom() const;
     void setNom(const std::string& nom);
 
     virtual int getNumero() = 0;

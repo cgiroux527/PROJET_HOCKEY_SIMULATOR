@@ -9,6 +9,8 @@
 #include <QPixmap>
 #include "Equipe.h"
 #include "Joueur.h"
+#include "ResultatMatch.h"
+#include "Simulation.h"
 #include "ui_MainWindow.h"
 
 
@@ -89,7 +91,40 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->BoutonPageSim, &QPushButton::clicked, this, [this]() {
         ui->MultiPageWidget->setCurrentIndex(1);});
     connect(ui->BoutonSim, &QPushButton::clicked, this, [this]() {
-        ui->MultiPageWidget->setCurrentIndex(2);});
+        ui->MultiPageWidget->setCurrentIndex(2);
+
+        Simulation simulation;
+
+        QLabel* labels[] = {ui->LabelResult1,ui->LabelResult2,ui->LabelResult3,ui->LabelResult4,ui->LabelResult5,ui->LabelResult6,ui->LabelResult7,ui->LabelResult8,ui->LabelResult9,ui->LabelResult10};
+
+        int index = 0;
+        std::vector<std::string> ligne(4);
+
+        while (!simulation.getCalendrier().empty() && index < 10) {
+            ligne.clear();
+            ligne.push_back("Montreal Quebecois");
+            ligne.push_back(simulation.getCalendrier().front().getNomEquipe());
+
+            ResultatMatch resultat =simulation.simulerMatch(_equipe.getPersonnes());
+            QString texte;
+
+            ligne.push_back(std::to_string(resultat.getScoreLocal()) + "-" + std::to_string(resultat.getScoreAdverse()));
+            if (resultat.getGagnant()) {
+                texte = "Victoire de votre équipe! ";
+                ligne.push_back("V");
+            } else {
+                texte = "Défaite de votre équipe! ";
+                ligne.push_back("D");
+            }
+            texte += QString::number(resultat.getScoreLocal());
+            texte += " - ";
+            texte += QString::number(resultat.getScoreAdverse());
+            labels[index]->setText(texte);
+
+            _sommaireSimu.push_back(ligne);
+            index++;
+        }
+    });
     connect(ui->BoutonSauvegarder, &QPushButton::clicked, qApp, &QApplication::quit);
 
     // Affichage des images dans les labels

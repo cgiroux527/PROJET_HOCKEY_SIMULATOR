@@ -13,7 +13,7 @@ class Entraineur : public Personne {
 private :
     std::string _poste;
 public :
-    Entraineur(std::string poste, std::string nom);
+    Entraineur(const std::string &poste,const std::string &nom);
 
     void setPoste(const std::string& poste);
 

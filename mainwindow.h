@@ -36,6 +36,8 @@ private:
     Joueur* _joueurActif = nullptr;
     std::string _positionSelectionnee;
 
+    std::vector<std::vector<std::string>> _sommaireSimu;
+
     void chargerJoueursDepuisEquipe();
     void sauvegarderSelectionRoster();
     void remplirListeRoster();

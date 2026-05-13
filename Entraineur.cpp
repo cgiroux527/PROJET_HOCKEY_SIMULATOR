@@ -4,7 +4,7 @@
 
 #include "Entraineur.h"
 
-Entraineur::Entraineur(std::string poste, std::string nom) {
+Entraineur::Entraineur(const std::string &poste,const std::string &nom) {
     setPoste(poste);
     setNom(nom);
 }
