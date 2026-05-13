@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     remplirListeRoster();
     initialiserLineup();
     rafraichirUI();
+    initialiserProgressBar();
 
     // Changements
     connect(ui->ListeRooster, &QListWidget::itemChanged, this, &MainWindow::verifierLimiteRoster);
@@ -154,12 +155,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         qDebug() << "Image non chargée";
     }
     QPixmap pix2("C:/Users/mingo/CLionProjects/PROJET_HOCKEY_SIMULATOR/Images/ice.png");
-    if (!pix.isNull()) {
+    if (!pix2.isNull()) {
         ui->ImagePatinoire->setPixmap(pix2);
         ui->ImagePatinoire->setScaledContents(true);
     } else {
         qDebug() << "Image non chargée";
     }
+    _breakingNews << "Caufield marque 2 buts contre les Ministers d'Ottawa" << "Slafkovsky en feu avec +3 dans ses deux derniers matchs"<< "Suzuki première étoile dans la dernière victoire des Québécois"<< "Laine blessé pour le reste de la saison";
+    ui->News->setText(_breakingNews[0]);
+    _timerNews = new QTimer(this);
+    connect(_timerNews, &QTimer::timeout,
+            this, &MainWindow::changerBreakingNews);
+    _timerNews->start(5000);
     // Fin du constructeur
 }
 
@@ -322,6 +329,26 @@ bool MainWindow::estDansLineup(Joueur* j) {
             return true;
     }
     return false;
+}
+
+void MainWindow::changerBreakingNews()
+{
+    _indexNews++;
+
+    if(_indexNews >= _breakingNews.size())
+        _indexNews = 0;
+
+    ui->News->setText(_breakingNews[_indexNews]);
+}
+
+void MainWindow::initialiserProgressBar() {
+    int matchsJoues = 10;
+    int totalMatchs = 10;
+    ui->progressBar->setMinimum(0);
+    ui->progressBar->setMaximum(totalMatchs);
+    ui->progressBar->setValue(matchsJoues);
+    ui->progressBar->setFormat(QString("Saison : %1 / %2 matchs").arg(matchsJoues).arg(totalMatchs));
+    ui->progressBar->setTextVisible(true);
 }
 
 MainWindow::~MainWindow() {

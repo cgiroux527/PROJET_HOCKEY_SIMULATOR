@@ -10,6 +10,8 @@
 #include "Equipe.h"
 #include <vector>
 #include <list>
+#include <QTimer>
+#include <QStringList>
 
 
 class QListWidgetItem;
@@ -24,6 +26,13 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow {
     Q_OBJECT
 private:
+    QStringList _breakingNews;
+    int _indexNews = 0;
+    QTimer* _timerNews;
+    void changerBreakingNews();
+
+    void initialiserProgressBar();
+
     Equipe _equipe;
 
     std::list<Joueur*> _joueursMatch;
