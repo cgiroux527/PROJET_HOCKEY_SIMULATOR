@@ -4,6 +4,8 @@
 
 // You may need to build the project (run Qt uic code generator) to get "ui_MainWindow.h" resolved
 #include "mainwindow.h"
+
+#include <fstream>
 #include <QApplication>
 #include <QMessageBox>
 #include <QPixmap>
@@ -125,7 +127,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             index++;
         }
     });
-    connect(ui->BoutonSauvegarder, &QPushButton::clicked, qApp, &QApplication::quit);
+    connect(ui->BoutonSauvegarder, &QPushButton::clicked,this, [this] () {
+        std::ofstream fichierSauvegarde("../ResultatsMatchs.csv");
+        if (!fichierSauvegarde.is_open()) {
+            std::cerr << "L'ouverture du fichier a échoué." << std::endl;
+            return;
+        }
+        for (const auto & match : _sommaireSimu) {
+            for (size_t i = 0; i < match.size(); i++) {
+                fichierSauvegarde << match[i];
+                if (i < match.size()) {
+                    fichierSauvegarde << ";";
+                }
+            }
+            fichierSauvegarde << '\n';
+        }
+        fichierSauvegarde.close();
+    });
+    connect(ui->BoutonQuitter, &QPushButton::clicked, qApp, &QApplication::quit);
 
     // Affichage des images dans les labels
     QPixmap pix("C:/Users/mingo/CLionProjects/PROJET_HOCKEY_SIMULATOR/Images/chat.png");

@@ -4,7 +4,7 @@
 
 #include "Match.h"
 
-Match::Match(std::string nomEquipe, int overall) {
+Match::Match(const std::string &nomEquipe, int overall) {
     _nomEquipe = nomEquipe;
     _overall = overall;
 }

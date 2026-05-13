@@ -13,7 +13,7 @@ private:
     int _overall;
 
 public:
-    Match(std::string nomEquipe, int overall);
+    Match(const std::string &nomEquipe, int overall);
 
     const std::string& getNomEquipe() const;
     int getOverall() const;
