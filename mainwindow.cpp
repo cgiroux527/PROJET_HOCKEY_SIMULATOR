@@ -6,7 +6,6 @@
 #include "mainwindow.h"
 
 #include <fstream>
-#include <QApplication>
 #include <QMessageBox>
 #include <QPixmap>
 #include "Equipe.h"
