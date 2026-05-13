@@ -4,6 +4,7 @@
 
 // You may need to build the project (run Qt uic code generator) to get "ui_MainWindow.h" resolved
 #include "mainwindow.h"
+#include <QApplication>
 #include <QMessageBox>
 #include <QPixmap>
 #include "Equipe.h"
@@ -89,8 +90,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->MultiPageWidget->setCurrentIndex(1);});
     connect(ui->BoutonSim, &QPushButton::clicked, this, [this]() {
         ui->MultiPageWidget->setCurrentIndex(2);});
-    connect(ui->BoutonAccueil, &QPushButton::clicked, this, [this]() {
-        ui->MultiPageWidget->setCurrentIndex(0);});
+    connect(ui->BoutonSauvegarder, &QPushButton::clicked, qApp, &QApplication::quit);
 
     // Affichage des images dans les labels
     QPixmap pix("C:/Users/mingo/CLionProjects/PROJET_HOCKEY_SIMULATOR/Images/chat.png");

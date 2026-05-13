@@ -49,7 +49,7 @@ void Equipe::sauvegarder(const std::string &nomFichier) {
     fichier.close();
 }
 
-void Equipe::ajouterAlignement() {
+/*void Equipe::ajouterAlignement() {
     std::vector<Joueur> ligne;
     for (auto personne : _personnes) {
         if (personne->getNumero() != 0) {
@@ -74,7 +74,7 @@ void Equipe::ajouterAlignement() {
         }
     }
 }
-
+*/
 const std::list<Personne*>& Equipe::getPersonnes() const {
     return _personnes;
 }
