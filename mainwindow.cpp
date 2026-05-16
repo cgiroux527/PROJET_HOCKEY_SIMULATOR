@@ -94,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->MultiPageWidget->setCurrentIndex(1);});
     connect(ui->BoutonSim, &QPushButton::clicked, this, [this]() {
         ui->MultiPageWidget->setCurrentIndex(2);
-
+        ui->BoutonSim->setEnabled(false);
         Simulation simulation;
 
         QLabel* labels[] = {ui->LabelResult1,ui->LabelResult2,ui->LabelResult3,ui->LabelResult4,ui->LabelResult5,ui->LabelResult6,ui->LabelResult7,ui->LabelResult8,ui->LabelResult9,ui->LabelResult10};
@@ -164,8 +164,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     _breakingNews << "Caufield marque 2 buts contre les Ministers d'Ottawa" << "Slafkovsky en feu avec +3 dans ses deux derniers matchs"<< "Suzuki première étoile dans la dernière victoire des Québécois"<< "Laine blessé pour le reste de la saison";
     ui->News->setText(_breakingNews[0]);
     _timerNews = new QTimer(this);
-    connect(_timerNews, &QTimer::timeout,
-            this, &MainWindow::changerBreakingNews);
+    connect(_timerNews, &QTimer::timeout, this, &MainWindow::changerBreakingNews);
     _timerNews->start(5000);
     // Fin du constructeur
 }
@@ -307,19 +306,44 @@ void MainWindow::remplirListeRoster() {
     }
 }
 
-// S'assurer que le roster ne depasse pas 20 joueurs
+// S'assurer que le roster ne depasse pas 20 joueurs + conditions
 void MainWindow::verifierLimiteRoster(QListWidgetItem* item) {
     int nbCoches = 0;
+    int nbGardiens = 0;
+    int nbDefenseurs = 0;
+
+    // Le bouton n'est pas dispo, il faut 20 joueurs cochés pour qu'il marche
+    ui->BoutonSim->setEnabled(false);
 
     for (int i = 0; i < ui->ListeRooster->count(); i++) {
         if (ui->ListeRooster->item(i)->checkState() == Qt::Checked) {
             nbCoches++;
+            std::string position = _joueurs[i]->getPosition();
+            if(position == "G")
+                nbGardiens++;
+            if(position == "D")
+                nbDefenseurs++;
         }
     }
+
+    // Maximum 20
     if (nbCoches > 20) {
         item->setCheckState(Qt::Unchecked);
+        QMessageBox::warning(this,"Limite atteinte","Maximum de 20 joueurs.");
 
-        QMessageBox::warning(this, "Limite atteinte", "Maximum de 20 joueurs.");
+        return;
+    }
+
+    // Validation visuelle quand roster complet
+    if(nbCoches == 20) {
+        ui->BoutonSim->setEnabled(true);
+        if(nbGardiens < 1) {
+            QMessageBox::warning(this,"Roster invalide", "Vous devez avoir au moins 1 gardien.");
+        } else if(nbDefenseurs < 6) {
+            QMessageBox::warning(this,"Roster invalide","Vous devez avoir au moins 6 defenseurs.");
+        } else {
+            QMessageBox::information(this,"Roster valide","Votre roster est valide.");
+        }
     }
 }
 

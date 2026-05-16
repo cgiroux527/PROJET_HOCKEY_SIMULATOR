@@ -49,6 +49,7 @@ private:
 
     void chargerJoueursDepuisEquipe();
     void sauvegarderSelectionRoster();
+
     void remplirListeRoster();
     void verifierLimiteRoster(QListWidgetItem* item);
     bool estDansLineup(Joueur *j);
